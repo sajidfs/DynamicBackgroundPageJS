@@ -21,6 +21,10 @@ body {
   font-size: 8rem;
 }
 
+#app {
+  margin-bottom: 0.5rem;
+}
+
 h1 {
   margin-bottom: 3rem;
 }

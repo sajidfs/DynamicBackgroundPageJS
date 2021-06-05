@@ -2,6 +2,42 @@ const time = document.querySelector("#time");
 const greeting = document.querySelector("#greeting");
 const name = document.querySelector("#name");
 const focus = document.querySelector("#focus");
+const app = document.getElementById("app");
+
+const apiKey = "80a80724c031de45ca7b3822a12c3bcd";
+
+const showPosition = (p)=> {
+
+  getWeatherInfo(p.coords.latitude, p.coords.longitude);
+
+  // app.innerHTML = "Latitude: " + p.coords.latitude + 
+  // "<br>Longitude: " + p.coords.longitude;
+};
+
+const getWeatherInfo = (lat, lon)=> {
+  //const response = fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`);
+  
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+  .then(response => response.json())
+  .then(data => {
+
+    console.log(data);
+
+    app.innerHTML = "<strong>Location</strong>: " + data.name + "<br>" + 
+    "Temperature: " + data.main.temp + ", Feels like: " + data.main.feels_like
+
+  });
+
+};
+
+const getLocation = ()=> {
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+  else{
+    app.innerHTML ="GeoLocation is not supported by this browser.";
+  }
+};
 
 const showTime = () => {
   let today = new Date();
@@ -85,3 +121,4 @@ showTime();
 setBackgroundGreet();
 getName();
 getFocus();
+getLocation();
