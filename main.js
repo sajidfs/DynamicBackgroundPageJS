@@ -21,8 +21,6 @@ const getWeatherInfo = (lat, lon)=> {
   .then(response => response.json())
   .then(data => {
 
-    console.log(data);
-
     app.innerHTML = "<strong>Location</strong>: " + data.name + "<br>" + 
     "Temperature: " + data.main.temp + ", Feels like: " + data.main.feels_like
 
