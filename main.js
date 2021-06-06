@@ -71,6 +71,7 @@ const setBackgroundGreet = () => {
   } else {
     document.body.style.backgroundImage = "url('../img/evening.jpg')";
     greeting.textContent = "Good Evening, ";
+    document.body.style.color = "black";
   }
 };
 
